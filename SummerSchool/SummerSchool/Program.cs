@@ -9,7 +9,7 @@ namespace SummerSchool
     class Program
     {
         static string[] Students = new string[15];
-        static int[] StudentsAccountBalance = new int[15];
+        static double[] StudentsAccountBalance = new double[15];
 
         static void Main(string[] args)
         {
@@ -51,7 +51,7 @@ namespace SummerSchool
         private static void UnEnrollStudent()
         {
             string[] tempArray = new string[15];
-            int[] tempArrayBal = new int[15];
+            double[] tempArrayBal = new double[15];
             PrintStudentList();
             Console.WriteLine();
             Console.WriteLine("Which student would you like to unenroll?");
@@ -91,34 +91,81 @@ namespace SummerSchool
             string StudentName = Console.ReadLine();
             Console.WriteLine();
 
-            if (StudentName.ToLower() == "malfoy")
+            var splitNames = StudentName.Split(' ');
+            string Fname = splitNames[0];
+            string Lname = splitNames[1];
+
+
+            if (StudentName.ToLower().Contains("malfoy"))
             {
                 Console.WriteLine("Enrollment declined. The Malfoy family has been BANNED from our institution.");
-            } else if (StudentName.ToLower() == "potter")
+            }
+            else if (StudentName.ToLower().Contains("potter"))
             {
+
                 for (int i = 0; i < 15; i++)
                 {
                     if (Students[i] == null)
                     {
                         Students[i] = StudentName;
-                        StudentsAccountBalance[i] = EnrollmentCost/2;
-                        Console.WriteLine("Thank you for choosing us {0}.\nYour currently balance is an amount of: -{1:C}", StudentName, EnrollmentCost);
+                        StudentsAccountBalance[i] = EnrollmentCost * .5;
+                        Console.WriteLine("Thank you for choosing us {0}.\nYour currently balance is an amount of: -£{1}", StudentName, StudentsAccountBalance[i]);
                         break;
                     }
                 }
+
+            }
+            else if (StudentName.ToLower().Contains("longbottom"))
+            {
+
+                for (int i = 0; i < 15; i++)
+                {
+                    if (Students[i] == null && CheckEnrollmentStatus() < 10)
+                    {
+                        Students[i] = StudentName;
+                        StudentsAccountBalance[i] = EnrollmentCost * 0;
+                        Console.WriteLine("Thank you for choosing us {0}.\nYour currently balance is an amount of: £{1}", StudentName, StudentsAccountBalance[i]);
+                        break;
+                    }
+                    else
+                    {
+                        Students[i] = StudentName;
+                        StudentsAccountBalance[i] = EnrollmentCost;
+                        Console.WriteLine("Thank you for choosing us {0}.\nYour currently balance is an amount of: -£{1}", StudentName, StudentsAccountBalance[i]);
+                        break;
+                    }
+                }
+
+            } 
+            else if (Fname.ToLower().First() == Lname.ToLower().First())
+            {
+
+                for (int i = 0; i < 15; i++)
+                {
+                    if (Students[i] == null)
+                    {
+                        Students[i] = StudentName;
+                        StudentsAccountBalance[i] = EnrollmentCost * .90;
+                        Console.WriteLine("Thank you for choosing us {0}.\nYour currently balance is an amount of: -£{1}", StudentName, StudentsAccountBalance[i]);
+                        break;
+                    }
+                }
+
             }
             else
             {
+
                 for (int i = 0; i < 15; i++)
                 {
                     if (Students[i] == null)
                     {
                         Students[i] = StudentName;
                         StudentsAccountBalance[i] = EnrollmentCost;
-                        Console.WriteLine("Thank you for choosing us {0}.\nYour currently balance is an amount of: -{1:C}", StudentName, EnrollmentCost);
+                        Console.WriteLine("Thank you for choosing us {0}.\nYour currently balance is an amount of: -£{1}", StudentName, StudentsAccountBalance[i]);
                         break;
                     }
                 }
+
             }
            
         }
