@@ -8,7 +8,11 @@ namespace SummerSchool
 {
     class Program
     {
+        static string SpecialMessage = " RED ALERT!!! HE WHO MUST NOT BE NAMED!!! ";
         static string[] Students = new string[15];
+        static string[] EnglishNationalQuidditchTeam = { "Vosper", "Hawksworth", "Flitney", "Withey",
+                                                        "Choudry", "Frisby", "Parkin" };
+
         static double[] StudentsAccountBalance = new double[15];
 
         static void Main(string[] args)
@@ -40,9 +44,18 @@ namespace SummerSchool
             {
                 if (Students[i] != null)
                 {
-                    Console.WriteLine();
-                    Console.Write( i+1 + ". " + Students[i] + " ");
-                    Console.Write("(£" + StudentsAccountBalance[i] + ")");
+                    if (ProfessorMcgonagallSpecialNames(Students[i]))
+                    {
+                        Console.WriteLine();
+                        Console.Write(i + 1 + ". " + SpecialMessage + " ");
+                        Console.Write("(£" + StudentsAccountBalance[i] + ")");
+                    }
+                    else
+                    {
+                        Console.WriteLine();
+                        Console.Write(i + 1 + ". " + Students[i] + " ");
+                        Console.Write("(£" + StudentsAccountBalance[i] + ")");
+                    }
                 }
             }
             Console.WriteLine();
@@ -95,7 +108,6 @@ namespace SummerSchool
             string Fname = splitNames[0];
             string Lname = splitNames[1];
 
-
             if (StudentName.ToLower().Contains("malfoy"))
             {
                 Console.WriteLine("Enrollment declined. The Malfoy family has been BANNED from our institution.");
@@ -109,8 +121,16 @@ namespace SummerSchool
                     {
                         Students[i] = StudentName;
                         StudentsAccountBalance[i] = EnrollmentCost * .5;
-                        Console.WriteLine("Thank you for choosing us {0}.\nYour currently balance is an amount of: -£{1}", StudentName, StudentsAccountBalance[i]);
-                        break;
+                        if (ProfessorMcgonagallSpecialNames(StudentName))
+                        {
+                            Console.WriteLine("Thank you for choosing us {0}.\nYour currently balance is an amount of: -£{1}", SpecialMessage, StudentsAccountBalance[i]);
+                            break;
+                        }
+                        else
+                        {
+                            Console.WriteLine("Thank you for choosing us {0}.\nYour currently balance is an amount of: -£{1}", StudentName, StudentsAccountBalance[i]);
+                            break;
+                        }
                     }
                 }
 
@@ -124,15 +144,31 @@ namespace SummerSchool
                     {
                         Students[i] = StudentName;
                         StudentsAccountBalance[i] = EnrollmentCost * 0;
-                        Console.WriteLine("Thank you for choosing us {0}.\nYour currently balance is an amount of: £{1}", StudentName, StudentsAccountBalance[i]);
-                        break;
+                        if (ProfessorMcgonagallSpecialNames(StudentName))
+                        {
+                            Console.WriteLine("Thank you for choosing us {0}.\nYour currently balance is an amount of: -£{1}", SpecialMessage, StudentsAccountBalance[i]);
+                            break;
+                        }
+                        else
+                        {
+                            Console.WriteLine("Thank you for choosing us {0}.\nYour currently balance is an amount of: £{1}", StudentName, StudentsAccountBalance[i]);
+                            break;
+                        }
                     }
                     else
                     {
                         Students[i] = StudentName;
                         StudentsAccountBalance[i] = EnrollmentCost;
-                        Console.WriteLine("Thank you for choosing us {0}.\nYour currently balance is an amount of: -£{1}", StudentName, StudentsAccountBalance[i]);
-                        break;
+                        if (ProfessorMcgonagallSpecialNames(StudentName))
+                        {
+                            Console.WriteLine("Thank you for choosing us {0}.\nYour currently balance is an amount of: -£{1}", SpecialMessage, StudentsAccountBalance[i]);
+                            break;
+                        }
+                        else
+                        {
+                            Console.WriteLine("Thank you for choosing us {0}.\nYour currently balance is an amount of: -£{1}", StudentName, StudentsAccountBalance[i]);
+                            break;
+                        }
                     }
                 }
 
@@ -146,23 +182,63 @@ namespace SummerSchool
                     {
                         Students[i] = StudentName;
                         StudentsAccountBalance[i] = EnrollmentCost * .90;
-                        Console.WriteLine("Thank you for choosing us {0}.\nYour currently balance is an amount of: -£{1}", StudentName, StudentsAccountBalance[i]);
-                        break;
+                        if (ProfessorMcgonagallSpecialNames(StudentName))
+                        {
+                            Console.WriteLine("Thank you for choosing us {0}.\nYour currently balance is an amount of: -£{1}", SpecialMessage, StudentsAccountBalance[i]);
+                            break;
+                        }
+                        else
+                        {
+                            Console.WriteLine("Thank you for choosing us {0}.\nYour currently balance is an amount of: -£{1}", StudentName, StudentsAccountBalance[i]);
+                            break;
+                        }
                     }
                 }
 
+            }
+            else if (CheckStudentConnectionToQuidditchTeam(Lname) == true)
+            {
+                for (int i = 0; i < 15; i++)
+                {
+
+                    if (Students[i] == null)
+                    {
+                        Students[i] = StudentName;
+                        StudentsAccountBalance[i] = EnrollmentCost * .70;
+                        if (ProfessorMcgonagallSpecialNames(StudentName))
+                        {
+                            Console.WriteLine("Thank you for choosing us {0}.\nYour currently balance is an amount of: -£{1}", SpecialMessage, StudentsAccountBalance[i]);
+                            break;
+                        }
+                        else
+                        {
+                            Console.WriteLine("Thank you for choosing us {0}.\nYour currently balance is an amount of: -£{1}", StudentName, StudentsAccountBalance[i]);
+                            break;
+                        }
+                    }
+                }
             }
             else
             {
 
                 for (int i = 0; i < 15; i++)
                 {
+
                     if (Students[i] == null)
                     {
                         Students[i] = StudentName;
                         StudentsAccountBalance[i] = EnrollmentCost;
-                        Console.WriteLine("Thank you for choosing us {0}.\nYour currently balance is an amount of: -£{1}", StudentName, StudentsAccountBalance[i]);
-                        break;
+                        if (ProfessorMcgonagallSpecialNames(StudentName))
+                        {
+                            Console.WriteLine("Thank you for choosing us {0}.\nYour currently balance is an amount of: -£{1}", SpecialMessage, StudentsAccountBalance[i]);
+                            break;
+                        }
+                        else
+                        {
+                            Console.WriteLine("Thank you for choosing us {0}.\nYour currently balance is an amount of: -£{1}", StudentName, StudentsAccountBalance[i]);
+                            break;
+                        }
+                     
                     }
                 }
 
@@ -225,6 +301,29 @@ namespace SummerSchool
 
 
             } while (selection != 4);
+        }
+
+        private static bool CheckStudentConnectionToQuidditchTeam(string Lname)
+        {
+            for (int i = 0; i < EnglishNationalQuidditchTeam.Length; i++)
+            {
+                if (Lname == EnglishNationalQuidditchTeam[i])
+                {
+                    return true;
+                }
+            }
+
+            return false;
+
+        }
+
+        private static bool ProfessorMcgonagallSpecialNames(string StudentName)
+        {
+            if (StudentName.ToLower().Contains("tom") || StudentName.ToLower().Contains("riddle") || StudentName.ToLower().Contains("voldemort"))
+            {
+                return true;
+            }
+                return false;
         }
     }
 }
