@@ -44,11 +44,13 @@ namespace SummerSchool
             {
                 if (Students[i] != null)
                 {
-                    if (ProfessorMcgonagallSpecialNames(Students[i]))
+                    if (StudentsAccountBalance[i] < 200)
                     {
                         Console.WriteLine();
-                        Console.Write(i + 1 + ". " + SpecialMessage + " ");
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.Write(i + 1 + ". " + Students[i] + " ");
                         Console.Write("(£" + StudentsAccountBalance[i] + ")");
+                        Console.ResetColor();
                     }
                     else
                     {
@@ -111,6 +113,27 @@ namespace SummerSchool
             if (StudentName.ToLower().Contains("malfoy"))
             {
                 Console.WriteLine("Enrollment declined. The Malfoy family has been BANNED from our institution.");
+            }
+            else if (WeasleyOrGranger(Lname))
+            {
+                for (int i = 0; i < 15; i++)
+                {
+                    if (Students[i] == null)
+                    {
+                        Students[i] = StudentName;
+                        StudentsAccountBalance[i] = EnrollmentCost * 0;
+                        if (ProfessorMcgonagallSpecialNames(StudentName))
+                        {
+                            Console.WriteLine("Thank you for choosing us {0}.\nYour currently balance is an amount of: -£{1}", SpecialMessage, StudentsAccountBalance[i]);
+                            break;
+                        }
+                        else
+                        {
+                            Console.WriteLine("Thank you for choosing us {0}.\nYour currently balance is an amount of: -£{1}", StudentName, StudentsAccountBalance[i]);
+                            break;
+                        }
+                    }
+                }
             }
             else if (StudentName.ToLower().Contains("potter"))
             {
@@ -324,6 +347,23 @@ namespace SummerSchool
                 return true;
             }
                 return false;
+        }
+
+        private static bool WeasleyOrGranger(String Lname)
+        {
+            if (Lname.ToLower() == "weasley" || Lname.ToLower() == "granger")
+            {
+                for(int i = 0; i < StudentsAccountBalance.Length; i++)
+                {
+                    StudentsAccountBalance[i] = StudentsAccountBalance[i] * .95;
+                }
+                return true;
+            } 
+            else
+            {
+                return false;
+            }
+
         }
     }
 }
