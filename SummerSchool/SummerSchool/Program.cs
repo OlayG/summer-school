@@ -29,6 +29,7 @@ namespace SummerSchool
         private static int CheckEnrollmentStatus()
         {
             int counter = 0;
+            //loops through checks to see if array spot has a name; if so increase counter
             for (int i = 0; i < Students.Length; i++)
             {
                 if (Students[i] != null)
