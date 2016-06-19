@@ -20,7 +20,7 @@ namespace SummerSchool
         {
             Menu();
             Console.WriteLine("You are now Signed Out!");
-
+            Console.WriteLine("Press Any Key To Close");
             Console.ReadKey();
 
         }
@@ -76,6 +76,7 @@ namespace SummerSchool
                     }
                 }
             }
+            Console.WriteLine();
             Console.WriteLine();
             Console.WriteLine("Total: £" + sum);
             Console.WriteLine();
@@ -369,6 +370,7 @@ namespace SummerSchool
         // This method is used to check if student is related to member to sports team based on last name
         private static bool CheckStudentConnectionToQuidditchTeam(string Lname)
         {
+            // Compares last name of user to those listed in the wuidditch team array
             for (int i = 0; i < EnglishNationalQuidditchTeam.Length; i++)
             {
                 if (Lname == EnglishNationalQuidditchTeam[i])
