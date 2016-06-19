@@ -12,6 +12,7 @@ namespace SummerSchool
         static string[] Students = new string[15];
         static string[] EnglishNationalQuidditchTeam = { "Vosper", "Hawksworth", "Flitney", "Withey",
                                                         "Choudry", "Frisby", "Parkin" };
+        static bool[] WeasleyGrangerDiscount = new bool[15];
 
         static double[] StudentsAccountBalance = new double[15];
 
@@ -24,6 +25,7 @@ namespace SummerSchool
 
         }
 
+        
         private static int CheckEnrollmentStatus()
         {
             int counter = 0;
@@ -40,6 +42,9 @@ namespace SummerSchool
 
         private static void PrintStudentList()
         {
+            double sum = 0.0;
+
+            //StudentsAccountBalance = BalanceCalculation();
             for (int i = 0; i < Students.Length; i++)
             {
                 if (Students[i] != null)
@@ -51,22 +56,31 @@ namespace SummerSchool
                         Console.Write(i + 1 + ". " + Students[i] + " ");
                         Console.Write("(£" + StudentsAccountBalance[i] + ")");
                         Console.ResetColor();
+
+                        sum = sum + StudentsAccountBalance[i];
                     }
                     else
                     {
                         Console.WriteLine();
                         Console.Write(i + 1 + ". " + Students[i] + " ");
                         Console.Write("(£" + StudentsAccountBalance[i] + ")");
+
+                        sum = sum + StudentsAccountBalance[i];
+
                     }
                 }
             }
             Console.WriteLine();
+            Console.WriteLine("Total: £" + sum);
+            Console.WriteLine();
+
         }
 
         private static void UnEnrollStudent()
         {
             string[] tempArray = new string[15];
             double[] tempArrayBal = new double[15];
+            bool[] tempArrayDiscount = new bool[15];
             PrintStudentList();
             Console.WriteLine();
             Console.WriteLine("Which student would you like to unenroll?");
@@ -82,18 +96,21 @@ namespace SummerSchool
                 {
                     Students[i] = null;
                     StudentsAccountBalance[i] = 0;
+                    WeasleyGrangerDiscount[i] = false;
                 }
 
                 if(Students[i] != null)
                 {
                     tempArray[j] = Students[i];
                     tempArrayBal[j] = StudentsAccountBalance[i];
+                    tempArrayDiscount[j] = WeasleyGrangerDiscount[i];
                     j++;
                 }
             }
 
             Students = tempArray;
             StudentsAccountBalance = tempArrayBal;
+            WeasleyGrangerDiscount = tempArrayDiscount;
             Console.WriteLine(StudentName + " has been unenrolled.");
             Console.WriteLine();
         }
@@ -124,12 +141,12 @@ namespace SummerSchool
                         StudentsAccountBalance[i] = EnrollmentCost * 0;
                         if (ProfessorMcgonagallSpecialNames(StudentName))
                         {
-                            Console.WriteLine("Thank you for choosing us {0}.\nYour currently balance is an amount of: -£{1}", SpecialMessage, StudentsAccountBalance[i]);
+                            Console.WriteLine("Thank you for choosing us {0}.\nYour currently balance is an amount of: £{1}", SpecialMessage, StudentsAccountBalance[i]);
                             break;
                         }
                         else
                         {
-                            Console.WriteLine("Thank you for choosing us {0}.\nYour currently balance is an amount of: -£{1}", StudentName, StudentsAccountBalance[i]);
+                            Console.WriteLine("Thank you for choosing us {0}.\nYour currently balance is an amount of: £{1}", StudentName, StudentsAccountBalance[i]);
                             break;
                         }
                     }
@@ -355,7 +372,8 @@ namespace SummerSchool
             {
                 for(int i = 0; i < StudentsAccountBalance.Length; i++)
                 {
-                    StudentsAccountBalance[i] = StudentsAccountBalance[i] * .95;
+                    if(!WeasleyGrangerDiscount[i])
+                        StudentsAccountBalance[i] = StudentsAccountBalance[i] * .95;
                 }
                 return true;
             } 
@@ -364,6 +382,41 @@ namespace SummerSchool
                 return false;
             }
 
+        }
+
+        private static void BalanceCalculation()
+        {
+            bool DiscountForAll = false;
+            string Lname = null;
+
+            for (int i = 0; i < Students.Length; i++)
+            {
+                if (Students[i] != null)
+                {
+                    var splitNames = Students[i].Split(' ');
+                    Lname = splitNames[1];
+
+                }
+
+                if (WeasleyOrGranger(Lname))
+                {
+                    DiscountForAll = true;
+                    break;
+                }
+            }
+
+            for (int i = 0; i < StudentsAccountBalance.Length; i++)
+            {
+                
+
+                if (Students[i] != null && DiscountForAll && !WeasleyGrangerDiscount[i])
+                {
+                    WeasleyGrangerDiscount[i] = true;
+                }
+            }
+
+
+            //return StudentsAccountBalance;
         }
     }
 }
