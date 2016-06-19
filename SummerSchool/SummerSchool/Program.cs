@@ -46,11 +46,13 @@ namespace SummerSchool
         {
             double sum = 0.0;
 
-            //StudentsAccountBalance = BalanceCalculation();
+            // Loops through and prints name if current index is not null
             for (int i = 0; i < Students.Length; i++)
             {
                 if (Students[i] != null)
                 {
+                    // If student current balance is less than full enrollment cost, student text is red to stand out
+                    // Also calculates total sum of all students 
                     if (StudentsAccountBalance[i] < 200)
                     {
                         Console.WriteLine();
@@ -61,6 +63,8 @@ namespace SummerSchool
 
                         sum = sum + StudentsAccountBalance[i];
                     }
+                    // If balance is == to full enrollment cost, print normally in white text
+                    // Also calculates total sum of all students
                     else
                     {
                         Console.WriteLine();
