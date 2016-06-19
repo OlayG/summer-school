@@ -386,6 +386,7 @@ namespace SummerSchool
         // This method is used to find special names and applie the corresponding case
         private static bool ProfessorMcgonagallSpecialNames(string StudentName)
         {
+            // Checks to see if any part of student's name contains any of names Professor McGonagall Privacy List
             if (StudentName.ToLower().Contains("tom") || StudentName.ToLower().Contains("riddle") || StudentName.ToLower().Contains("voldemort"))
             {
                 return true;
