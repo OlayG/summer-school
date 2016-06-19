@@ -419,11 +419,13 @@ namespace SummerSchool
         //This method is used to keep track of students if they have benefited from WeasleyOrGranger discount 
         private static void BalanceCalculation()
         {
-            bool DiscountForAll = false;
+            bool DiscountForAll = false; // To see if all students are elligible for the WeasleyOrGranger Scholarship
             string Lname = null;
 
+            // Look to check to see if any one in the Weasley or Granger family is enrolled
             for (int i = 0; i < Students.Length; i++)
             {
+                // Gets the students lastname
                 if (Students[i] != null)
                 {
                     var splitNames = Students[i].Split(' ');
@@ -431,17 +433,19 @@ namespace SummerSchool
 
                 }
 
+                // Check lastname to see if they are indeed a member for the Weasley or Granger family
                 if (WeasleyOrGranger(Lname))
                 {
-                    DiscountForAll = true;
+                    DiscountForAll = true; // If atleast one member is found EVERYONE GETS A DISCOUNT YAY
                     break;
                 }
             }
 
+            // Loops through student balance array
             for (int i = 0; i < StudentsAccountBalance.Length; i++)
             {
                 
-
+                // Makes sure if student got the discount it is recorded
                 if (Students[i] != null && DiscountForAll && !WeasleyGrangerDiscount[i])
                 {
                     WeasleyGrangerDiscount[i] = true;
