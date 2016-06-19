@@ -309,7 +309,9 @@ namespace SummerSchool
         private static void Menu()
         {
             Console.WriteLine("Welcome, input the number that corresponds to your choice selection");
-            int selection;
+            int selection; // Initiated outside of the loop
+
+            // Loop to display a modified menu choice to user depending on how many students enrolled
             do
             {
                 Console.WriteLine();
@@ -337,14 +339,15 @@ namespace SummerSchool
                 }
 
 
-
+                // Collects selection from user
                 selection = Convert.ToInt32(Console.ReadLine());
 
-                if (selection == 1 && CheckEnrollmentStatus() != 15)
+                // Conditional States to execute tasks based on user selection
+                if (selection == 1 && CheckEnrollmentStatus() < 15)
                 {
                     EnrollStudent();
                 }
-                else if (selection == 2 && CheckEnrollmentStatus() != 0)
+                else if (selection == 2 && CheckEnrollmentStatus() > 0)
                 {
                     UnEnrollStudent();
 
