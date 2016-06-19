@@ -25,7 +25,7 @@ namespace SummerSchool
 
         }
 
-        
+        // This method is used to count the number of students currently enrolled
         private static int CheckEnrollmentStatus()
         {
             int counter = 0;
@@ -40,6 +40,7 @@ namespace SummerSchool
             return counter;
         }
 
+        // This method is used to print out the student list (discounted students are highlighted)
         private static void PrintStudentList()
         {
             double sum = 0.0;
@@ -76,6 +77,7 @@ namespace SummerSchool
 
         }
 
+        // This method is used to unenroll student and re-order the list make sure no gaps 
         private static void UnEnrollStudent()
         {
             string[] tempArray = new string[15];
@@ -115,6 +117,7 @@ namespace SummerSchool
             Console.WriteLine();
         }
 
+        // This method enrolls students and based on differnt conditions applies special cases
         private static void EnrollStudent()
         {
             int EnrollmentCost = 200;
@@ -286,6 +289,7 @@ namespace SummerSchool
            
         }
 
+        // This method is the menu and displays differnt options based on enrollment status
         private static void Menu()
         {
             Console.WriteLine("Welcome, input the number that corresponds to your choice selection");
@@ -343,6 +347,7 @@ namespace SummerSchool
             } while (selection != 4);
         }
 
+        // This method is used to check if student is related to member to sports team based on last name
         private static bool CheckStudentConnectionToQuidditchTeam(string Lname)
         {
             for (int i = 0; i < EnglishNationalQuidditchTeam.Length; i++)
@@ -357,6 +362,7 @@ namespace SummerSchool
 
         }
 
+        // This method is used to find special names and applie the corresponding case
         private static bool ProfessorMcgonagallSpecialNames(string StudentName)
         {
             if (StudentName.ToLower().Contains("tom") || StudentName.ToLower().Contains("riddle") || StudentName.ToLower().Contains("voldemort"))
@@ -366,6 +372,7 @@ namespace SummerSchool
                 return false;
         }
 
+        // This method is used to see if any of the students are related to Weasley or Granger if true applies special case
         private static bool WeasleyOrGranger(String Lname)
         {
             if (Lname.ToLower() == "weasley" || Lname.ToLower() == "granger")
@@ -384,6 +391,7 @@ namespace SummerSchool
 
         }
 
+        //This method is used to keep track of students if they have benefited from WeasleyOrGranger discount 
         private static void BalanceCalculation()
         {
             bool DiscountForAll = false;
@@ -415,8 +423,6 @@ namespace SummerSchool
                 }
             }
 
-
-            //return StudentsAccountBalance;
         }
     }
 }
