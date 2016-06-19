@@ -85,20 +85,27 @@ namespace SummerSchool
         // This method is used to unenroll student and re-order the list make sure no gaps 
         private static void UnEnrollStudent()
         {
+            // Temporary arrays to reorganize the static arrays
             string[] tempArray = new string[15];
             double[] tempArrayBal = new double[15];
             bool[] tempArrayDiscount = new bool[15];
+
+            // Prints out list of curently enrolled students
             PrintStudentList();
             Console.WriteLine();
+
+            // Asks and Gets what student the user would like to unenroll (User selects by number)
             Console.WriteLine("Which student would you like to unenroll?");
             int StudentToUnenroll = Convert.ToInt32(Console.ReadLine());
             Console.WriteLine();
 
+            // Gets student name based on number selected by user ([StudentToUnenroll - 1] since array starts from 0)
             string StudentName = Students[StudentToUnenroll - 1];         
 
+            // Loop to find student in array and reset all information associated with the student
             for (int i = 0, j = 0; i < 15; i++)
             {
-
+                // If the index of student is == index user selected this is excuted
                 if (i == StudentToUnenroll - 1)
                 {
                     Students[i] = null;
@@ -106,18 +113,22 @@ namespace SummerSchool
                     WeasleyGrangerDiscount[i] = false;
                 }
 
+                // If current index has student name this is executed
                 if(Students[i] != null)
                 {
-                    tempArray[j] = Students[i];
-                    tempArrayBal[j] = StudentsAccountBalance[i];
-                    tempArrayDiscount[j] = WeasleyGrangerDiscount[i];
-                    j++;
+                    tempArray[j] = Students[i]; // Takes the student name puts it in temporary array
+                    tempArrayBal[j] = StudentsAccountBalance[i]; // Does same with balance
+                    tempArrayDiscount[j] = WeasleyGrangerDiscount[i]; // Does same with discount (T or F)
+                    j++; // This is associated to temp array moves to next spot
                 }
             }
 
+            // Dumps temp arrays back into static original arrays
             Students = tempArray;
             StudentsAccountBalance = tempArrayBal;
             WeasleyGrangerDiscount = tempArrayDiscount;
+
+            // Informs user of successfull unenrollment
             Console.WriteLine(StudentName + " has been unenrolled.");
             Console.WriteLine();
         }
