@@ -397,10 +397,13 @@ namespace SummerSchool
         // This method is used to see if any of the students are related to Weasley or Granger if true applies special case
         private static bool WeasleyOrGranger(String Lname)
         {
+            // Used to see if students enrolled qualify for the WeasleyGranger Scholarship
             if (Lname.ToLower() == "weasley" || Lname.ToLower() == "granger")
             {
+                //loops through students account balance to apply WeasleyGranger Scholarship
                 for(int i = 0; i < StudentsAccountBalance.Length; i++)
                 {
+                    // Checks to see if student already recieved this schorlarship before applying it
                     if(!WeasleyGrangerDiscount[i])
                         StudentsAccountBalance[i] = StudentsAccountBalance[i] * .95;
                 }
