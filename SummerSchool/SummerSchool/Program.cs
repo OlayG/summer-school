@@ -1,5 +1,4 @@
-﻿
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -46,6 +45,12 @@ namespace SummerSchool
         private static void PrintStudentList()
         {
             double sum = 0.0;
+
+            Console.WriteLine();
+            Console.ForegroundColor = ConsoleColor.DarkCyan;
+            Console.WriteLine("Enrolled Students");
+            Console.ResetColor();
+            Console.WriteLine();
 
             // Loops through and prints name if current index is not null
             for (int i = 0; i < Students.Length; i++)
@@ -310,34 +315,55 @@ namespace SummerSchool
         // This method is the menu and displays differnt options based on enrollment status
         private static void Menu()
         {
-            Console.WriteLine("Welcome, input the number that corresponds to your choice selection");
+            Console.WriteLine();
+            Console.ForegroundColor = ConsoleColor.DarkMagenta;
+            Console.WriteLine("-------------------------------------------------------------------------");
+            Console.WriteLine("Welcome, input the number that corresponds to your choice selection     |");
+            Console.ResetColor();
+
             int selection; // Initiated outside of the loop
 
             // Loop to display a modified menu choice to user depending on how many students enrolled
             do
             {
-                Console.WriteLine();
+                //Console.WriteLine("                                                                        |");
                 if (CheckEnrollmentStatus() == 15)
                 {
-                    Console.WriteLine("2. Unenroll a student");
-                    Console.WriteLine("3. Print out the list of enrolled students");
-                    Console.WriteLine("4. Exit");
+                    //Console.WriteLine();
+                    Console.ForegroundColor = ConsoleColor.DarkMagenta;
+                    Console.WriteLine();
+                    Console.WriteLine("2. Unenroll a student                                                   |");
+                    Console.WriteLine("3. Print out the list of enrolled students                              |");
+                    Console.WriteLine("4. Exit                                                                 |");
+                    Console.WriteLine("-------------------------------------------------------------------------");
+                    Console.ResetColor();
                     Console.WriteLine();
                 }
                 else if (CheckEnrollmentStatus() == 0)
                 {
-                    Console.WriteLine("1. Enroll a student");
-                    Console.WriteLine("3. Print out the list of enrolled students");
-                    Console.WriteLine("4. Exit");
+                    Console.ForegroundColor = ConsoleColor.DarkMagenta;
                     Console.WriteLine();
+                    Console.WriteLine("1. Enroll a student                                                     |");
+                    Console.WriteLine("3. Print out the list of enrolled students                              |");
+                    Console.WriteLine("4. Exit                                                                 |");
+                    Console.WriteLine("-------------------------------------------------------------------------");
+                    Console.WriteLine();
+                    Console.ResetColor();
+
                 }
                 else
                 {
-                    Console.WriteLine("1. Enroll a student");
-                    Console.WriteLine("2. Unenroll a student");
-                    Console.WriteLine("3. Print out the list of enrolled students");
-                    Console.WriteLine("4. Exit");
+                    Console.ForegroundColor = ConsoleColor.DarkMagenta;
                     Console.WriteLine();
+                    Console.WriteLine("-------------------------------------------------------------------------");
+                    Console.WriteLine("1. Enroll a student                                                     |");
+                    Console.WriteLine("2. Unenroll a student                                                   |");
+                    Console.WriteLine("3. Print out the list of enrolled students                              |");
+                    Console.WriteLine("4. Exit                                                                 |");
+                    Console.WriteLine("-------------------------------------------------------------------------");
+                    Console.WriteLine();
+                    Console.ResetColor();
+
                 }
 
 
