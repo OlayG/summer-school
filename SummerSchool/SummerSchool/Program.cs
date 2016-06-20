@@ -143,7 +143,7 @@ namespace SummerSchool
         // This method enrolls students and based on differnt conditions applies special cases
         private static void EnrollStudent()
         {
-            int EnrollmentCost = 200;
+            double EnrollmentCost = 200;
             Console.WriteLine();
             Console.WriteLine("Please enter student's name");
             string StudentName = Console.ReadLine();
@@ -153,7 +153,7 @@ namespace SummerSchool
             string Fname = splitNames[0];
             string Lname = splitNames[1];
 
-            if (StudentName.ToLower().Contains("malfoy"))
+            if (Lname.ToLower() == "malfoy")
             {
                 Console.WriteLine("Enrollment declined. The Malfoy family has been BANNED from our institution.");
             }
