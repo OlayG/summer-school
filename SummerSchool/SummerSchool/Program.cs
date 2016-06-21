@@ -107,7 +107,7 @@ namespace SummerSchool
             Console.WriteLine();
 
             // Gets student name based on number selected by user ([StudentToUnenroll - 1] since array starts from 0)
-            string StudentName = Students[StudentToUnenroll - 1];         
+            string StudentName = Students[StudentToUnenroll - 1];
 
             // Loop to find student in array and reset all information associated with the student
             for (int i = 0, j = 0; i < 15; i++)
@@ -121,7 +121,7 @@ namespace SummerSchool
                 }
 
                 // If current index has student name this is executed
-                if(Students[i] != null)
+                if (Students[i] != null)
                 {
                     tempArray[j] = Students[i]; // Takes the student name puts it in temporary array
                     tempArrayBal[j] = StudentsAccountBalance[i]; // Does same with balance
@@ -153,163 +153,128 @@ namespace SummerSchool
             string Fname = splitNames[0];
             string Lname = splitNames[1];
 
-            if (Lname.ToLower() == "malfoy")
+            int openSpot = OpenSpot();
+
+            if(openSpot == -1)
+            {
+                Console.WriteLine("All spots are filled, Please try again next term");
+            }
+            else if (Lname.ToLower() == "malfoy")
             {
                 Console.WriteLine("Enrollment declined. The Malfoy family has been BANNED from our institution.");
             }
             else if (WeasleyOrGranger(Lname))
             {
-                for (int i = 0; i < 15; i++)
+
+                Students[openSpot] = StudentName;
+                StudentsAccountBalance[openSpot] = EnrollmentCost * 0;
+                if (ProfessorMcgonagallSpecialNames(StudentName))
                 {
-                    if (Students[i] == null)
-                    {
-                        Students[i] = StudentName;
-                        StudentsAccountBalance[i] = EnrollmentCost * 0;
-                        if (ProfessorMcgonagallSpecialNames(StudentName))
-                        {
-                            Console.WriteLine("Thank you for choosing us {0}.\nYour currently balance is an amount of: £{1}", SpecialMessage, StudentsAccountBalance[i]);
-                            break;
-                        }
-                        else
-                        {
-                            Console.WriteLine("Thank you for choosing us {0}.\nYour currently balance is an amount of: £{1}", StudentName, StudentsAccountBalance[i]);
-                            break;
-                        }
-                    }
+                    Console.WriteLine("Thank you for choosing us {0}.\nYour currently balance is an amount of: £{1}", SpecialMessage, StudentsAccountBalance[openSpot]);
                 }
+                else
+                {
+                    Console.WriteLine("Thank you for choosing us {0}.\nYour currently balance is an amount of: £{1}", StudentName, StudentsAccountBalance[openSpot]);
+                }
+
             }
             else if (StudentName.ToLower().Contains("potter"))
             {
 
-                for (int i = 0; i < 15; i++)
+
+                Students[openSpot] = StudentName;
+                StudentsAccountBalance[openSpot] = EnrollmentCost * .5;
+                if (ProfessorMcgonagallSpecialNames(StudentName))
                 {
-                    if (Students[i] == null)
-                    {
-                        Students[i] = StudentName;
-                        StudentsAccountBalance[i] = EnrollmentCost * .5;
-                        if (ProfessorMcgonagallSpecialNames(StudentName))
-                        {
-                            Console.WriteLine("Thank you for choosing us {0}.\nYour currently balance is an amount of: -£{1}", SpecialMessage, StudentsAccountBalance[i]);
-                            break;
-                        }
-                        else
-                        {
-                            Console.WriteLine("Thank you for choosing us {0}.\nYour currently balance is an amount of: -£{1}", StudentName, StudentsAccountBalance[i]);
-                            break;
-                        }
-                    }
+                    Console.WriteLine("Thank you for choosing us {0}.\nYour currently balance is an amount of: -£{1}", SpecialMessage, StudentsAccountBalance[openSpot]);
                 }
+                else
+                {
+                    Console.WriteLine("Thank you for choosing us {0}.\nYour currently balance is an amount of: -£{1}", StudentName, StudentsAccountBalance[openSpot]);
+                }
+
+
 
             }
             else if (StudentName.ToLower().Contains("longbottom"))
             {
 
-                for (int i = 0; i < 15; i++)
+                if (CheckEnrollmentStatus() < 10)
                 {
-                    if (Students[i] == null && CheckEnrollmentStatus() < 10)
+                    Students[openSpot] = StudentName;
+                    StudentsAccountBalance[openSpot] = EnrollmentCost * 0;
+                    if (ProfessorMcgonagallSpecialNames(StudentName))
                     {
-                        Students[i] = StudentName;
-                        StudentsAccountBalance[i] = EnrollmentCost * 0;
-                        if (ProfessorMcgonagallSpecialNames(StudentName))
-                        {
-                            Console.WriteLine("Thank you for choosing us {0}.\nYour currently balance is an amount of: -£{1}", SpecialMessage, StudentsAccountBalance[i]);
-                            break;
-                        }
-                        if(!ProfessorMcgonagallSpecialNames(StudentName))
-                        {
-                            Console.WriteLine("Thank you for choosing us {0}.\nYour currently balance is an amount of: £{1}", StudentName, StudentsAccountBalance[i]);
-                            break;
-                        }
+                        Console.WriteLine("Thank you for choosing us {0}.\nYour currently balance is an amount of: -£{1}", SpecialMessage, StudentsAccountBalance[openSpot]);
+                    }
+                    if (!ProfessorMcgonagallSpecialNames(StudentName))
+                    {
+                        Console.WriteLine("Thank you for choosing us {0}.\nYour currently balance is an amount of: £{1}", StudentName, StudentsAccountBalance[openSpot]);
+                    }
+                }
+                else
+                {
+                    Students[openSpot] = StudentName;
+                    StudentsAccountBalance[openSpot] = EnrollmentCost;
+                    if (ProfessorMcgonagallSpecialNames(StudentName))
+                    {
+                        Console.WriteLine("Thank you for choosing us {0}.\nYour currently balance is an amount of: -£{1}", SpecialMessage, StudentsAccountBalance[openSpot]);
                     }
                     else
                     {
-                        Students[i] = StudentName;
-                        StudentsAccountBalance[i] = EnrollmentCost;
-                        if (ProfessorMcgonagallSpecialNames(StudentName))
-                        {
-                            Console.WriteLine("Thank you for choosing us {0}.\nYour currently balance is an amount of: -£{1}", SpecialMessage, StudentsAccountBalance[i]);
-                            break;
-                        }
-                        else
-                        {
-                            Console.WriteLine("Thank you for choosing us {0}.\nYour currently balance is an amount of: -£{1}", StudentName, StudentsAccountBalance[i]);
-                            break;
-                        }
+                        Console.WriteLine("Thank you for choosing us {0}.\nYour currently balance is an amount of: -£{1}", StudentName, StudentsAccountBalance[openSpot]);
                     }
                 }
 
-            } 
+
+            }
             else if (Fname.ToLower().First() == Lname.ToLower().First())
             {
 
-                for (int i = 0; i < 15; i++)
+                Students[openSpot] = StudentName;
+                StudentsAccountBalance[openSpot] = EnrollmentCost * .90;
+                if (ProfessorMcgonagallSpecialNames(StudentName))
                 {
-                    if (Students[i] == null)
-                    {
-                        Students[i] = StudentName;
-                        StudentsAccountBalance[i] = EnrollmentCost * .90;
-                        if (ProfessorMcgonagallSpecialNames(StudentName))
-                        {
-                            Console.WriteLine("Thank you for choosing us {0}.\nYour currently balance is an amount of: -£{1}", SpecialMessage, StudentsAccountBalance[i]);
-                            break;
-                        }
-                        else
-                        {
-                            Console.WriteLine("Thank you for choosing us {0}.\nYour currently balance is an amount of: -£{1}", StudentName, StudentsAccountBalance[i]);
-                            break;
-                        }
-                    }
+                    Console.WriteLine("Thank you for choosing us {0}.\nYour currently balance is an amount of: -£{1}", SpecialMessage, StudentsAccountBalance[openSpot]);
                 }
+                else
+                {
+                    Console.WriteLine("Thank you for choosing us {0}.\nYour currently balance is an amount of: -£{1}", StudentName, StudentsAccountBalance[openSpot]);
+                }
+
+
 
             }
             else if (CheckStudentConnectionToQuidditchTeam(Lname) == true)
             {
-                for (int i = 0; i < 15; i++)
-                {
 
-                    if (Students[i] == null)
-                    {
-                        Students[i] = StudentName;
-                        StudentsAccountBalance[i] = EnrollmentCost * .70;
-                        if (ProfessorMcgonagallSpecialNames(StudentName))
-                        {
-                            Console.WriteLine("Thank you for choosing us {0}.\nYour currently balance is an amount of: -£{1}", SpecialMessage, StudentsAccountBalance[i]);
-                            break;
-                        }
-                        else
-                        {
-                            Console.WriteLine("Thank you for choosing us {0}.\nYour currently balance is an amount of: -£{1}", StudentName, StudentsAccountBalance[i]);
-                            break;
-                        }
-                    }
+                Students[openSpot] = StudentName;
+                StudentsAccountBalance[openSpot] = EnrollmentCost * .70;
+                if (ProfessorMcgonagallSpecialNames(StudentName))
+                {
+                    Console.WriteLine("Thank you for choosing us {0}.\nYour currently balance is an amount of: -£{1}", SpecialMessage, StudentsAccountBalance[openSpot]);
                 }
+                else
+                {
+                    Console.WriteLine("Thank you for choosing us {0}.\nYour currently balance is an amount of: -£{1}", StudentName, StudentsAccountBalance[openSpot]);
+                }
+
+
             }
             else
             {
-
-                for (int i = 0; i < 15; i++)
+                Students[openSpot] = StudentName;
+                StudentsAccountBalance[openSpot] = EnrollmentCost;
+                if (ProfessorMcgonagallSpecialNames(StudentName))
                 {
-
-                    if (Students[i] == null)
-                    {
-                        Students[i] = StudentName;
-                        StudentsAccountBalance[i] = EnrollmentCost;
-                        if (ProfessorMcgonagallSpecialNames(StudentName))
-                        {
-                            Console.WriteLine("Thank you for choosing us {0}.\nYour currently balance is an amount of: -£{1}", SpecialMessage, StudentsAccountBalance[i]);
-                            break;
-                        }
-                        else
-                        {
-                            Console.WriteLine("Thank you for choosing us {0}.\nYour currently balance is an amount of: -£{1}", StudentName, StudentsAccountBalance[i]);
-                            break;
-                        }
-                     
-                    }
+                    Console.WriteLine("Thank you for choosing us {0}.\nYour currently balance is an amount of: -£{1}", SpecialMessage, StudentsAccountBalance[openSpot]);
                 }
-
+                else
+                {
+                    Console.WriteLine("Thank you for choosing us {0}.\nYour currently balance is an amount of: -£{1}", StudentName, StudentsAccountBalance[openSpot]);
+                }
             }
-           
+
         }
 
         // This method is the menu and displays differnt options based on enrollment status
@@ -418,7 +383,7 @@ namespace SummerSchool
             {
                 return true;
             }
-                return false;
+            return false;
         }
 
         // This method is used to see if any of the students are related to Weasley or Granger if true applies special case
@@ -428,14 +393,14 @@ namespace SummerSchool
             if (Lname.ToLower() == "weasley" || Lname.ToLower() == "granger")
             {
                 //loops through students account balance to apply WeasleyGranger Scholarship
-                for(int i = 0; i < StudentsAccountBalance.Length; i++)
+                for (int i = 0; i < StudentsAccountBalance.Length; i++)
                 {
                     // Checks to see if student already recieved this schorlarship before applying it
-                    if(!WeasleyGrangerDiscount[i])
+                    if (!WeasleyGrangerDiscount[i])
                         StudentsAccountBalance[i] = StudentsAccountBalance[i] * .95;
                 }
                 return true;
-            } 
+            }
             else
             {
                 return false;
@@ -471,7 +436,7 @@ namespace SummerSchool
             // Loops through student balance array
             for (int i = 0; i < StudentsAccountBalance.Length; i++)
             {
-                
+
                 // Makes sure if student got the discount it is recorded
                 if (Students[i] != null && DiscountForAll && !WeasleyGrangerDiscount[i])
                 {
@@ -479,6 +444,16 @@ namespace SummerSchool
                 }
             }
 
+        }
+
+        private static int OpenSpot()
+        {
+            for (int i = 0; i < Students.Length; i++)
+            {
+                if (Students[i] == null)
+                    return i;
+            }
+            return -1;
         }
     }
 }
