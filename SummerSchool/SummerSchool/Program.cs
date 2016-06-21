@@ -25,11 +25,9 @@ namespace SummerSchool
 
         }
 
-        // This method is used to count the number of students currently enrolled
         private static int CheckEnrollmentStatus()
         {
             int counter = 0;
-            //loops through checks to see if array spot has a name; if so increase counter
             for (int i = 0; i < Students.Length; i++)
             {
                 if (Students[i] != null)
@@ -41,7 +39,6 @@ namespace SummerSchool
             return counter;
         }
 
-        // This method is used to print out the student list (discounted students are highlighted)
         private static void PrintStudentList()
         {
             double sum = 0.0;
@@ -52,13 +49,10 @@ namespace SummerSchool
             Console.ResetColor();
             Console.WriteLine();
 
-            // Loops through and prints name if current index is not null
             for (int i = 0; i < Students.Length; i++)
             {
                 if (Students[i] != null)
                 {
-                    // If student current balance is less than full enrollment cost, student text is red to stand out
-                    // Also calculates total sum of all students 
                     if (StudentsAccountBalance[i] < 200)
                     {
                         Console.WriteLine();
@@ -69,8 +63,6 @@ namespace SummerSchool
 
                         sum = sum + StudentsAccountBalance[i];
                     }
-                    // If balance is == to full enrollment cost, print normally in white text
-                    // Also calculates total sum of all students
                     else
                     {
                         Console.WriteLine();
@@ -89,30 +81,23 @@ namespace SummerSchool
 
         }
 
-        // This method is used to unenroll student and re-order the list make sure no gaps 
         private static void UnEnrollStudent()
         {
-            // Temporary arrays to reorganize the static arrays
             string[] tempArray = new string[15];
             double[] tempArrayBal = new double[15];
             bool[] tempArrayDiscount = new bool[15];
 
-            // Prints out list of curently enrolled students
             PrintStudentList();
             Console.WriteLine();
 
-            // Asks and Gets what student the user would like to unenroll (User selects by number)
             Console.WriteLine("Which student would you like to unenroll?");
             int StudentToUnenroll = Convert.ToInt32(Console.ReadLine());
             Console.WriteLine();
 
-            // Gets student name based on number selected by user ([StudentToUnenroll - 1] since array starts from 0)
             string StudentName = Students[StudentToUnenroll - 1];
 
-            // Loop to find student in array and reset all information associated with the student
             for (int i = 0, j = 0; i < 15; i++)
             {
-                // If the index of student is == index user selected this is excuted
                 if (i == StudentToUnenroll - 1)
                 {
                     Students[i] = null;
@@ -120,7 +105,6 @@ namespace SummerSchool
                     WeasleyGrangerDiscount[i] = false;
                 }
 
-                // If current index has student name this is executed
                 if (Students[i] != null)
                 {
                     tempArray[j] = Students[i]; // Takes the student name puts it in temporary array
@@ -135,12 +119,10 @@ namespace SummerSchool
             StudentsAccountBalance = tempArrayBal;
             WeasleyGrangerDiscount = tempArrayDiscount;
 
-            // Informs user of successfull unenrollment
             Console.WriteLine(StudentName + " has been unenrolled.");
             Console.WriteLine();
         }
 
-        // This method enrolls students and based on differnt conditions applies special cases
         private static void EnrollStudent()
         {
             double EnrollmentCost = 200;
@@ -277,7 +259,6 @@ namespace SummerSchool
 
         }
 
-        // This method is the menu and displays differnt options based on enrollment status
         private static void Menu()
         {
             Console.WriteLine();
@@ -288,13 +269,10 @@ namespace SummerSchool
 
             int selection; // Initiated outside of the loop
 
-            // Loop to display a modified menu choice to user depending on how many students enrolled
             do
             {
-                //Console.WriteLine("                                                                        |");
                 if (CheckEnrollmentStatus() == 15)
                 {
-                    //Console.WriteLine();
                     Console.ForegroundColor = ConsoleColor.DarkMagenta;
                     Console.WriteLine();
                     Console.WriteLine("2. Unenroll a student                                                   |");
@@ -331,11 +309,8 @@ namespace SummerSchool
 
                 }
 
-
-                // Collects selection from user
                 selection = Convert.ToInt32(Console.ReadLine());
 
-                // Conditional States to execute tasks based on user selection
                 if (selection == 1 && CheckEnrollmentStatus() < 15)
                 {
                     EnrollStudent();
@@ -359,7 +334,6 @@ namespace SummerSchool
             } while (selection != 4);
         }
 
-        // This method is used to check if student is related to member to sports team based on last name
         private static bool CheckStudentConnectionToQuidditchTeam(string Lname)
         {
             // Compares last name of user to those listed in the wuidditch team array
@@ -375,7 +349,6 @@ namespace SummerSchool
 
         }
 
-        // This method is used to find special names and applie the corresponding case
         private static bool ProfessorMcgonagallSpecialNames(string StudentName)
         {
             // Checks to see if any part of student's name contains any of names Professor McGonagall Privacy List
@@ -386,13 +359,11 @@ namespace SummerSchool
             return false;
         }
 
-        // This method is used to see if any of the students are related to Weasley or Granger if true applies special case
         private static bool WeasleyOrGranger(String Lname)
         {
             // Used to see if students enrolled qualify for the WeasleyGranger Scholarship
             if (Lname.ToLower() == "weasley" || Lname.ToLower() == "granger")
             {
-                //loops through students account balance to apply WeasleyGranger Scholarship
                 for (int i = 0; i < StudentsAccountBalance.Length; i++)
                 {
                     // Checks to see if student already recieved this schorlarship before applying it
@@ -433,7 +404,6 @@ namespace SummerSchool
                 }
             }
 
-            // Loops through student balance array
             for (int i = 0; i < StudentsAccountBalance.Length; i++)
             {
 
