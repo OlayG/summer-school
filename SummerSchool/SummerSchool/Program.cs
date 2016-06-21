@@ -168,11 +168,11 @@ namespace SummerSchool
                 StudentsAccountBalance[openSpot] = EnrollmentCost * .5;
                 if (ProfessorMcgonagallSpecialNames(StudentName))
                 {
-                    Console.WriteLine("Thank you for choosing us {0}.\nYour currently balance is an amount of: -£{1}", SpecialMessage, StudentsAccountBalance[openSpot]);
+                    Console.WriteLine("Thank you for choosing us {0}.\nYour currently balance is an amount of: £{1}", SpecialMessage, StudentsAccountBalance[openSpot]);
                 }
                 else
                 {
-                    Console.WriteLine("Thank you for choosing us {0}.\nYour currently balance is an amount of: -£{1}", StudentName, StudentsAccountBalance[openSpot]);
+                    Console.WriteLine("Thank you for choosing us {0}.\nYour currently balance is an amount of: £{1}", StudentName, StudentsAccountBalance[openSpot]);
                 }
 
 
@@ -187,7 +187,7 @@ namespace SummerSchool
                     StudentsAccountBalance[openSpot] = EnrollmentCost * 0;
                     if (ProfessorMcgonagallSpecialNames(StudentName))
                     {
-                        Console.WriteLine("Thank you for choosing us {0}.\nYour currently balance is an amount of: -£{1}", SpecialMessage, StudentsAccountBalance[openSpot]);
+                        Console.WriteLine("Thank you for choosing us {0}.\nYour currently balance is an amount of: £{1}", SpecialMessage, StudentsAccountBalance[openSpot]);
                     }
                     if (!ProfessorMcgonagallSpecialNames(StudentName))
                     {
@@ -200,11 +200,11 @@ namespace SummerSchool
                     StudentsAccountBalance[openSpot] = EnrollmentCost;
                     if (ProfessorMcgonagallSpecialNames(StudentName))
                     {
-                        Console.WriteLine("Thank you for choosing us {0}.\nYour currently balance is an amount of: -£{1}", SpecialMessage, StudentsAccountBalance[openSpot]);
+                        Console.WriteLine("Thank you for choosing us {0}.\nYour currently balance is an amount of: £{1}", SpecialMessage, StudentsAccountBalance[openSpot]);
                     }
                     else
                     {
-                        Console.WriteLine("Thank you for choosing us {0}.\nYour currently balance is an amount of: -£{1}", StudentName, StudentsAccountBalance[openSpot]);
+                        Console.WriteLine("Thank you for choosing us {0}.\nYour currently balance is an amount of: £{1}", StudentName, StudentsAccountBalance[openSpot]);
                     }
                 }
 
@@ -217,11 +217,11 @@ namespace SummerSchool
                 StudentsAccountBalance[openSpot] = EnrollmentCost * .90;
                 if (ProfessorMcgonagallSpecialNames(StudentName))
                 {
-                    Console.WriteLine("Thank you for choosing us {0}.\nYour currently balance is an amount of: -£{1}", SpecialMessage, StudentsAccountBalance[openSpot]);
+                    Console.WriteLine("Thank you for choosing us {0}.\nYour currently balance is an amount of: £{1}", SpecialMessage, StudentsAccountBalance[openSpot]);
                 }
                 else
                 {
-                    Console.WriteLine("Thank you for choosing us {0}.\nYour currently balance is an amount of: -£{1}", StudentName, StudentsAccountBalance[openSpot]);
+                    Console.WriteLine("Thank you for choosing us {0}.\nYour currently balance is an amount of: £{1}", StudentName, StudentsAccountBalance[openSpot]);
                 }
 
 
@@ -234,11 +234,11 @@ namespace SummerSchool
                 StudentsAccountBalance[openSpot] = EnrollmentCost * .70;
                 if (ProfessorMcgonagallSpecialNames(StudentName))
                 {
-                    Console.WriteLine("Thank you for choosing us {0}.\nYour currently balance is an amount of: -£{1}", SpecialMessage, StudentsAccountBalance[openSpot]);
+                    Console.WriteLine("Thank you for choosing us {0}.\nYour currently balance is an amount of: £{1}", SpecialMessage, StudentsAccountBalance[openSpot]);
                 }
                 else
                 {
-                    Console.WriteLine("Thank you for choosing us {0}.\nYour currently balance is an amount of: -£{1}", StudentName, StudentsAccountBalance[openSpot]);
+                    Console.WriteLine("Thank you for choosing us {0}.\nYour currently balance is an amount of: £{1}", StudentName, StudentsAccountBalance[openSpot]);
                 }
 
 
@@ -249,11 +249,11 @@ namespace SummerSchool
                 StudentsAccountBalance[openSpot] = EnrollmentCost;
                 if (ProfessorMcgonagallSpecialNames(StudentName))
                 {
-                    Console.WriteLine("Thank you for choosing us {0}.\nYour currently balance is an amount of: -£{1}", SpecialMessage, StudentsAccountBalance[openSpot]);
+                    Console.WriteLine("Thank you for choosing us {0}.\nYour currently balance is an amount of: £{1}", SpecialMessage, StudentsAccountBalance[openSpot]);
                 }
                 else
                 {
-                    Console.WriteLine("Thank you for choosing us {0}.\nYour currently balance is an amount of: -£{1}", StudentName, StudentsAccountBalance[openSpot]);
+                    Console.WriteLine("Thank you for choosing us {0}.\nYour currently balance is an amount of: £{1}", StudentName, StudentsAccountBalance[openSpot]);
                 }
             }
 
