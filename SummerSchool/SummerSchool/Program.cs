@@ -133,7 +133,7 @@ namespace SummerSchool
 
             var splitNames = StudentName.Split(' ');
             string Fname = splitNames[0];
-            string Lname = splitNames[1];
+            string Lname = splitNames[splitNames.Length - 1];
 
             int openSpot = OpenSpot();
 
